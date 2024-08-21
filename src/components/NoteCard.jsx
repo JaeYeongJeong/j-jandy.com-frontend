@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-let apiUrl = 'https://localhost:8080';
-
-if (process.env.API_URL) {
-  apiUrl = process.env.API_URL;
-}
-
 export default function NoteCard({ note }) {
+  let apiUrl = 'https://localhost:8080';
+
+  if (import.meta.env.API_URL) {
+    apiUrl = import.meta.API_URL;
+  }
+
   const cardImage = note.image
     ? `${apiUrl}/${note.image}`
     : `${apiUrl}/noImage.jpg`;

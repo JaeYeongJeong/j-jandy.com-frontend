@@ -1,12 +1,6 @@
 import { Link, useRouteLoaderData } from 'react-router-dom';
 import { logout } from '../Util/http';
 
-let apiUrl = 'https://localhost:8080';
-
-if (process.env.API_URL) {
-  apiUrl = process.env.API_URL;
-}
-
 export default function NavBar() {
   const session = useRouteLoaderData('root');
   const isAuthenticated = session.session.isAuthenticated;

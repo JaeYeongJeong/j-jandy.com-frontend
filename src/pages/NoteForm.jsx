@@ -109,17 +109,19 @@ export async function action({ request, params }) {
   try {
     if (method === 'POST') {
       await createNewNote(noteData);
-    }
-
-    if (method === 'PATCH') {
+    } else if (method === 'PATCH') {
       const id = params.id;
       await editNote(noteData, id);
+    } else {
+      throw new Error('Unsupported method');
     }
 
     return redirect('/notes');
   } catch (error) {
     return {
-      error: error.message,
+      error:
+        error.message ||
+        'An unexpected error occurred. Please try again later.',
     };
   }
 }

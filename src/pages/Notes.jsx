@@ -4,19 +4,28 @@ import NoteHeader from '../components/NoteHeader';
 import { fetchNotes } from '../Util/http';
 
 export default function Notes() {
-  const { notes } = useLoaderData();
+  const { notes, error } = useLoaderData();
 
   return (
     <div className="notes">
       <NoteHeader />
       <Outlet />
-      <NotesList notes={notes} />
+      {!error && <NotesList notes={notes} />}
+      {error && <p>Something went wrong.</p>}
     </div>
   );
 }
 
 export async function loader() {
-  return defer({
-    notes: await fetchNotes({}),
-  });
+  try {
+    const notes = await fetchNotes({});
+    return defer({
+      notes,
+    });
+  } catch (error) {
+    return defer({
+      notes: null,
+      error,
+    });
+  }
 }

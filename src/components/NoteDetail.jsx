@@ -7,6 +7,12 @@ export default function NoteDetail({ note }) {
   const isAuthenticated = session.session.isAuthenticated;
   const param = useParams();
 
+  let apiUrl = 'https://localhost:8080';
+
+  if (import.meta.env.API_URL) {
+    apiUrl = import.meta.API_URL;
+  }
+
   const cardImage = note.image
     ? `${apiUrl}/${note.image}`
     : `${apiUrl}/noImage.jpg`;

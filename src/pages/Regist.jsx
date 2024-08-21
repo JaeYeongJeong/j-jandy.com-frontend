@@ -1,11 +1,5 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
 
-let apiUrl = 'https://localhost:8080';
-
-if (process.env.API_URL) {
-  apiUrl = process.env.API_URL;
-}
-
 export default function Regist() {
   const actionData = useActionData();
 
@@ -37,6 +31,12 @@ export default function Regist() {
 }
 
 export async function action({ request }) {
+  let apiUrl = 'https://localhost:8080';
+
+  if (import.meta.env.API_URL) {
+    apiUrl = import.meta.API_URL;
+  }
+
   const url = `${apiUrl}/regist`;
   const formData = await request.formData();
   const id = formData.get('id');
@@ -48,17 +48,23 @@ export async function action({ request }) {
     return { error: 'check your password' };
   }
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ id, email, password, name }),
-  });
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id, email, password, name }),
+    });
 
-  if (!response.ok) {
-    const error = await response.json();
-    return { error: error.message };
+    if (!response.ok) {
+      const errorData = await response.json();
+      return { error: errorData || 'Failed to join' };
+    }
+  } catch (error) {
+    return {
+      error: 'An unexpected error occurred. Please try again later.',
+    };
   }
 
   return redirect('/notes');

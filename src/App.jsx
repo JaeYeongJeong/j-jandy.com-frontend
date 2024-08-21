@@ -14,6 +14,8 @@ import EditNote from './pages/EditNote';
 import CreateNote from './pages/CreateNote';
 import Login, { action as loginAction } from './pages/Login';
 import Regist, { action as registAction } from './pages/Regist';
+import NotFound from './pages/NotFound';
+import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     id: 'root',
     loader: rootLoader,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -70,6 +73,10 @@ const router = createBrowserRouter([
         path: '/regist',
         element: <Regist />,
         action: registAction,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },

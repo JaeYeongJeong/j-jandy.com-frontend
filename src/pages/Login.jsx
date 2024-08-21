@@ -1,11 +1,5 @@
 import { Form, redirect, useActionData, useNavigate } from 'react-router-dom';
 
-let apiUrl = 'https://localhost:8080';
-
-if (process.env.API_URL) {
-  apiUrl = process.env.API_URL;
-}
-
 export default function Login() {
   const actionData = useActionData();
   const navigate = useNavigate();
@@ -34,23 +28,34 @@ export default function Login() {
 }
 
 export async function action({ request }) {
+  let apiUrl = 'https://localhost:8080';
+
+  if (import.meta.env.API_URL) {
+    apiUrl = import.meta.env.API_URL;
+  }
+
   const url = `${apiUrl}/login`;
   const formData = await request.formData();
   const id = formData.get('id');
   const password = formData.get('password');
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ id, password }),
-    credentials: 'include',
-  });
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id, password }),
+      credentials: 'include',
+    });
 
-  if (!response.ok) {
-    return { error: 'Invalid credentials' };
+    if (!response.ok) {
+      const errorData = await response.json();
+      return { error: errorData.message || 'Invalid credentials' };
+    }
+
+    return redirect('/');
+  } catch (error) {
+    return { error: 'An unexpected error occurred. Please try again later.' };
   }
-
-  return redirect('/');
 }
