@@ -1,5 +1,11 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
 
+let apiUrl = 'https://localhost:8080';
+
+if (process.env.API_URL) {
+  apiUrl = process.env.API_URL;
+}
+
 export default function Regist() {
   const actionData = useActionData();
 
@@ -31,7 +37,7 @@ export default function Regist() {
 }
 
 export async function action({ request }) {
-  const url = `https://localhost:8080/regist`;
+  const url = `${apiUrl}/regist`;
   const formData = await request.formData();
   const id = formData.get('id');
   const email = formData.get('email');

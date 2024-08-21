@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 
+let apiUrl = 'https://localhost:8080';
+
+if (process.env.API_URL) {
+  apiUrl = process.env.API_URL;
+}
+
 export default function NoteCard({ note }) {
   const cardImage = note.image
-    ? `https://localhost:8080/${note.image}`
-    : `https://localhost:8080/noImage.jpg`;
+    ? `${apiUrl}/${note.image}`
+    : `${apiUrl}/noImage.jpg`;
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',

@@ -1,6 +1,13 @@
 import { json } from 'react-router-dom';
+
+let apiUrl = 'https://localhost:8080';
+
+if (process.env.API_URL) {
+  apiUrl = process.env.API_URL;
+};
+
 export async function fetchNotes({ searchTerm }) {
-  let url = 'https://localhost:8080/notes';
+  let url = `${apiUrl}/notes`;
 
   if (searchTerm) {
     url += '/search?query=' + searchTerm
@@ -24,7 +31,7 @@ export async function fetchNotes({ searchTerm }) {
 }
 
 export async function fetchNote({ id }) {
-  let url = `https://localhost:8080/notes/${id}`;
+  let url = `${apiUrl}/notes/${id}`;
 
   const response = await fetch(url);
 
@@ -44,21 +51,13 @@ export async function fetchNote({ id }) {
 }
 
 export async function createNewNote(noteData) {
-  const url = `https://localhost:8080/notes`;
+  const url = `${apiUrl}/notes`;
 
   const formData = new FormData();
   formData.append('title', noteData.title);
   formData.append('image', noteData.image);
   formData.append('date', noteData.date);
   formData.append('description', noteData.description);
-
-  // const response = await fetch(url, {
-  //   method: 'POST',
-  //   body: JSON.stringify(noteData),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // });
 
   const response = await fetch(url, {
     method: 'POST',
@@ -80,7 +79,7 @@ export async function createNewNote(noteData) {
 }
 
 export async function editNote(noteData, id) {
-  const url = `https://localhost:8080/notes/${id}`;
+  const url = `${apiUrl}/notes/${id}`;
 
   const formData = new FormData();
   formData.append('title', noteData.title);
@@ -114,7 +113,7 @@ export async function editNote(noteData, id) {
 }
 
 export async function deleteNote(id) {
-  const url = `https://localhost:8080/notes/${id}`;
+  const url = `${apiUrl}/notes/${id}`;
 
   try {
     const response = await fetch(url, {
@@ -142,7 +141,7 @@ export async function deleteNote(id) {
 
 export async function checkSession() {
   try {
-    const response = await fetch('https://localhost:8080/session', {
+    const response = await fetch(`${apiUrl}/session`, {
       credentials: 'include',
     });
     if (!response.ok) {
@@ -158,7 +157,7 @@ export async function checkSession() {
 
 export async function logout() {
   try {
-    const response = await fetch('https://localhost:8080/logout', {
+    const response = await fetch(`${apiUrl}/logout`, {
       method: 'POST',
       credentials: 'include',
     });

@@ -1,28 +1,18 @@
-import { useEffect, useState } from 'react';
 import { Link, useRouteLoaderData } from 'react-router-dom';
-import { checkSession, logout } from '../Util/http';
+import { logout } from '../Util/http';
+
+let apiUrl = 'https://localhost:8080';
+
+if (process.env.API_URL) {
+  apiUrl = process.env.API_URL;
+}
 
 export default function NavBar() {
-  // const [user, setUser] = useState(null);
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect(() => {
-  //   async function fetchSession() {
-  //     const sessionData = await checkSession();
-  //     setIsAuthenticated(sessionData.isAuthenticated);
-  //     setUser(sessionData.user);
-  //   }
-
-  //   fetchSession();
-  // }, []);
   const session = useRouteLoaderData('root');
   const isAuthenticated = session.session.isAuthenticated;
 
   async function handleLogout() {
     await logout();
-    // const sessionData = await checkSession();
-    // setIsAuthenticated(sessionData.isAuthenticated);
-    // setUser(sessionData.user);
   }
 
   return (

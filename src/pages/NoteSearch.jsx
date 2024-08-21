@@ -1,7 +1,6 @@
 import { Await, defer, useLoaderData } from 'react-router-dom';
 import { Suspense } from 'react';
 import { fetchNotes } from '../Util/http';
-import NotesList from '../components/NoteList';
 import NoteHeader from '../components/NoteHeader';
 import SearchedNotesList from '../components/SearchedNote';
 

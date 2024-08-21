@@ -1,5 +1,11 @@
 import { Form, redirect, useActionData, useNavigate } from 'react-router-dom';
 
+let apiUrl = 'https://localhost:8080';
+
+if (process.env.API_URL) {
+  apiUrl = process.env.API_URL;
+}
+
 export default function Login() {
   const actionData = useActionData();
   const navigate = useNavigate();
@@ -28,7 +34,7 @@ export default function Login() {
 }
 
 export async function action({ request }) {
-  const url = `https://localhost:8080/login`;
+  const url = `${apiUrl}/login`;
   const formData = await request.formData();
   const id = formData.get('id');
   const password = formData.get('password');
