@@ -1,12 +1,12 @@
 import { json } from 'react-router-dom';
 
+let apiUrl = 'https://localhost:8080';
+
+if (import.meta.env.API_URL) {
+  apiUrl = import.meta.API_URL;
+};
+
 export async function fetchNotes({ searchTerm }) {
-  let apiUrl = 'https://localhost:8080';
-
-  if (import.meta.env.API_URL) {
-    apiUrl = import.meta.API_URL;
-  };
-
   let url = `${apiUrl}/notes`;
 
   if (searchTerm) {
@@ -51,12 +51,6 @@ export async function fetchNote({ id }) {
 }
 
 export async function createNewNote(noteData) {
-  let apiUrl = 'https://localhost:8080';
-
-  if (import.meta.env.API_URL) {
-    apiUrl = import.meta.API_URL;
-  };
-
   const url = `${apiUrl}/notes`;
 
   const formData = new FormData();
