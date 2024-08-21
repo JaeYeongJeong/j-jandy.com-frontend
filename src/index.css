@@ -1,0 +1,407 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: medium;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #141414;
+
+  /* font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body,
+html {
+  overflow: auto;
+}
+
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  width: 85%;
+  background-color: #242424;
+  overflow: auto;
+}
+
+.root-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  width: 15%;
+  min-width: 280px;
+  height: 100%;
+
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2.5;
+  text-decoration: none;
+}
+
+.navbar ul {
+  margin-top: 20%;
+
+  /* 드래그 방지 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.navbar .dot {
+  margin-left: 3px;
+  color: orange;
+}
+
+.navbar-info {
+  margin-bottom: 10%;
+
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.navbar-info-login {
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-info-login .link {
+  margin: 8px 16px;
+}
+
+.navbar-info-updateDate {
+  display: flex;
+  justify-content: center;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.aboutMe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url('assets/ski.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+
+  /* 배경 이미지 투명도 설정 */
+  position: relative;
+  isolation: isolate;
+}
+
+/* 배경 이미지 투명도 설정 */
+.aboutMe::after {
+  content: '';
+  position: absolute;
+  background-color: black;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.3;
+}
+
+.introduction {
+  text-align: center;
+
+  font-size: 4rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.introduction .status {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 2.75rem;
+}
+
+.introduction .name {
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: orange;
+  text-decoration-thickness: 12px;
+}
+
+.introduction .description {
+  font-size: 1.75rem;
+  line-height: normal;
+}
+
+.link {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: rgb(252, 186, 65);
+  text-shadow: 2px 2px 1px orangered;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #242424;
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px;
+
+  background-color: #242424;
+}
+
+.notes-container {
+  display: grid;
+  grid-gap: 32px;
+  width: inherit;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  --card-count: 4;
+  --spacer: calc(var(--card-count) - 1);
+  --width: 25%;
+  grid-template-columns: repeat(
+    var(--card-count),
+    calc(var(--width) - (32px * var(--spacer) / var(--card-count)))
+  );
+}
+
+@media screen and (max-width: 1080px) {
+  .notes-container {
+    --card-count: 2;
+    --width: 50%;
+  }
+}
+
+@media screen and (min-width: 1081px) and (max-width: 1560px) {
+  .notes-container {
+    --card-count: 3;
+    --width: 33.33%;
+  }
+}
+
+@media (min-width: 1561px) {
+  .notes-container {
+    --card-count: 4;
+    --width: 25%;
+  }
+}
+
+notes-search-container {
+  display: grid;
+  grid-gap: 32px;
+  width: inherit;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  --card-count: 4;
+  --spacer: calc(var(--card-count) - 1);
+  --width: 25%;
+  grid-template-columns: repeat(
+    var(--card-count),
+    calc(var(--width) - (32px * var(--spacer) / var(--card-count)))
+  );
+}
+
+.note-item {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 500px;
+  background-color: #141414;
+}
+
+.note-item-link {
+  color: inherit;
+  height: inherit;
+  text-decoration: none;
+}
+
+.note-item img {
+  display: block;
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.note-item-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50%;
+}
+
+.note-item-content {
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.note-item-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+
+.note-item-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  /* 
+  overflow: hidden;
+  text-overflow: ellipsis; */
+}
+
+.note-item-date {
+  padding: 8px 16px;
+}
+
+.note-detail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.note-detail-contents {
+  padding: 1rem 1rem 4rem 1rem;
+}
+
+.note-detail h1 {
+  padding-top: 1rem;
+  margin: 0;
+}
+
+.note-detail img {
+  width: 80%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.note-detail-img {
+  display: flex;
+  justify-content: center;
+}
+
+.note-detail-description {
+  padding-top: 1rem;
+  font-size: 1.25rem;
+}
+
+.note-form-container {
+  display: block;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.note-form-chd {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.note-form-control {
+  display: flex;
+  justify-content: end;
+  padding: 1rem;
+}
+
+.note-form-container textarea,
+.note-form-container input {
+  padding: 1rem;
+}
+
+.note-form-container textarea {
+  height: 30vh;
+  resize: none;
+}
+
+.note-form-container button {
+  font-size: 1rem;
+  padding: 4px 12px;
+  margin: 0 0.5rem;
+  border: unset;
+  border-radius: 4px;
+}
+
+.note-form-container button:hover {
+  background-color: orange;
+  text-shadow: 2px 2px 1px orangered;
+}
+
+.note-header-container {
+  width: 100%;
+  margin: 8px 0px 16px 0px;
+}
+
+.note-header-container form {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+}
+
+.note-header-container input {
+  width: 40%;
+}
+
+.note-header-container button {
+  font-size: 1rem;
+  padding: 4px 12px;
+  margin: 0 0 0 0.5rem;
+  border: unset;
+  border-radius: 4px;
+}
+
+.note-header-container button:hover {
+  background-color: orange;
+  text-shadow: 2px 2px 1px orangered;
+}
+
+#image-preview {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}
