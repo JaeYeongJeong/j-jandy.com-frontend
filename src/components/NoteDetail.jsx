@@ -8,8 +8,8 @@ export default function NoteDetail({ note }) {
   const param = useParams();
 
   const cardImage = note.image
-    ? `https://localhost:8080/${note.image}`
-    : `https://localhost:8080/noImage.jpg`;
+    ? `${apiUrl}/${note.image}`
+    : `${apiUrl}/noImage.jpg`;
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',
