@@ -1,4 +1,5 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
+import apiUrl from '../Util/api-url';
 
 export default function Regist() {
   const actionData = useActionData();
@@ -31,12 +32,6 @@ export default function Regist() {
 }
 
 export async function action({ request }) {
-  let apiUrl = 'https://localhost:8080';
-
-  if (import.meta.env.API_URL) {
-    apiUrl = import.meta.env.API_URL;
-  }
-
   const url = `${apiUrl}/regist`;
   const formData = await request.formData();
   const id = formData.get('id');

@@ -1,4 +1,5 @@
 import { Form, redirect, useActionData, useNavigate } from 'react-router-dom';
+import apiUrl from '../Util/api-url';
 
 export default function Login() {
   const actionData = useActionData();
@@ -28,12 +29,6 @@ export default function Login() {
 }
 
 export async function action({ request }) {
-  let apiUrl = 'https://localhost:8080';
-
-  if (import.meta.env.API_URL) {
-    apiUrl = import.meta.env.API_URL;
-  }
-
   const url = `${apiUrl}/login`;
   const formData = await request.formData();
   const id = formData.get('id');

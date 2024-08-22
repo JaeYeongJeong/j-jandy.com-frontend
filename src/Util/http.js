@@ -1,10 +1,5 @@
 import { json } from 'react-router-dom';
-
-let apiUrl = 'https://localhost:8080';
-
-if (import.meta.env.API_URL) {
-  apiUrl = import.meta.env.API_URL;
-}
+import apiUrl from './api-url';
 
 export async function fetchNotes({ searchTerm }) {
   let url = `${apiUrl}/notes`;

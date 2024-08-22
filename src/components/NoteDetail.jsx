@@ -1,17 +1,12 @@
 import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
 import { deleteNote } from '../Util/http';
+import apiUrl from '../Util/api-url';
 
 export default function NoteDetail({ note }) {
   const navigate = useNavigate();
   const session = useRouteLoaderData('root');
   const isAuthenticated = session.session.isAuthenticated;
   const param = useParams();
-
-  let apiUrl = 'https://localhost:8080';
-
-  if (import.meta.env.API_URL) {
-    apiUrl = import.meta.env.API_URL;
-  }
 
   const cardImage = note.image
     ? `${apiUrl}/${note.image}`
