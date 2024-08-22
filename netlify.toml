@@ -3,3 +3,8 @@
   to = "https://tragic-evonne-jaey0394-b649cea3.koyeb.app"
   status = 200
   force = true
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
