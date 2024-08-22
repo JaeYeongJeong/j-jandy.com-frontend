@@ -41,7 +41,7 @@ export async function action({ request }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ id, password }),
-      // credentials: 'include',
+      credentials: 'include',
     });
 
     if (!response.ok) {
