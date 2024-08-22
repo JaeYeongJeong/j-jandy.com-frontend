@@ -4,7 +4,7 @@ export default function NoteCard({ note }) {
   let apiUrl = 'https://localhost:8080';
 
   if (import.meta.env.API_URL) {
-    apiUrl = import.meta.API_URL;
+    apiUrl = import.meta.env.API_URL;
   }
 
   const cardImage = note.image
