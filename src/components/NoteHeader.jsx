@@ -14,15 +14,13 @@ export default function NoteHeader() {
   }
 
   function handleAdd() {
-    // const isAuthentiacted = session.session.isAuthenticated;
-    // if (!isAuthentiacted) {
-    //   if (confirm('로그인이 필요합니다')) {
-    //     navigate('/login');
-    //   }
-    // } else {
-    //   navigate(`/notes/create`);
-    // }
-    navigate(`/notes/create`);
+    const isAuthentiacted = session.session.isAuthenticated;
+    if (!isAuthentiacted) {
+      if (confirm('로그인이 필요합니다')) {
+        return navigate('/login');
+      }
+    }
+    return navigate(`/notes/create`);
   }
 
   return (
