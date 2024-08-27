@@ -1,1 +1,3 @@
-"# MyPortfolio-frontend" 
+"# MyPortfolio-frontend"
+
+Deploy on netlify
