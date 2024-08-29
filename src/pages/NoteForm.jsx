@@ -24,7 +24,6 @@ export default function NoteForm({ method, note }) {
       };
       reader.readAsDataURL(file);
     }
-    setImagePreview('');
   }
 
   const isSubmitting = navigation.status === 'submitting';

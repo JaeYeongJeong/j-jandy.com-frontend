@@ -1,6 +1,6 @@
 import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
 import { deleteNote } from '../Util/http';
-import apiUrl from '../Util/api-url';
+import { s3BucketUrl } from '../Util/api-url';
 
 export default function NoteDetail({ note }) {
   const navigate = useNavigate();
@@ -9,8 +9,8 @@ export default function NoteDetail({ note }) {
   const param = useParams();
 
   const cardImage = note.image
-    ? `${apiUrl}/${note.image}`
-    : `${apiUrl}/noImage.jpg`;
+    ? `${s3BucketUrl}/${note.image}`
+    : `${s3BucketUrl}/noImage.jpg`;
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',
