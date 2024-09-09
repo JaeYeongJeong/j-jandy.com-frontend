@@ -53,10 +53,10 @@ export default function NavBar({ className }) {
         <div className="navbar-info-login">
           {!isAuthenticated && (
             <>
-              <Link to="/regist" className="link">
+              <Link to="/regist" className="link" onClick={clickHandler}>
                 Join us.
               </Link>
-              <Link to="/login" className="link">
+              <Link to="/login" className="link" onClick={clickHandler}>
                 Loigin.
               </Link>
             </>
