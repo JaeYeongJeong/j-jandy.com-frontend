@@ -1,14 +1,52 @@
-import { defer, Outlet, useRouteLoaderData } from 'react-router-dom';
+import { defer, Outlet, useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { checkSession } from '../Util/http';
+import { useEffect, useLayoutEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMobile } from '../../redux/actions';
 
 export default function RootLayout() {
+  const dispatch = useDispatch();
+  const isHome = useSelector((state) => state.isHome);
+  const isMobile = useSelector((state) => state.isMobile);
+  const pathName = useLocation();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobile = window.innerWidth <= 768;
+      dispatch(setMobile(isMobile));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    const element = document.documentElement;
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, [dispatch, pathName]);
+
   return (
     <div className="root-layout">
-      <NavBar />
-      <main>
-        <Outlet />
-      </main>
+      {isMobile && (
+        <>
+          {isHome && <NavBar className="navbar-mobile" />}
+          {!isHome && (
+            <div className="main-mobile">
+              <Outlet />
+            </div>
+          )}
+        </>
+      )}
+      {!isMobile && (
+        <>
+          <NavBar className="navbar" />
+          <div className="main">
+            <Outlet />
+          </div>
+        </>
+      )}
     </div>
   );
 }

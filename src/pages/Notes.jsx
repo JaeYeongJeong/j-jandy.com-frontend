@@ -10,6 +10,9 @@ export default function Notes() {
     <div className="notes">
       <NoteHeader />
       <Outlet />
+      {(!notes || notes.length === 0) && (
+        <p style={{ fontSize: '24px' }}>Create your first note.</p>
+      )}
       {!error && <NotesList notes={notes} />}
       {error && <p>Something went wrong.</p>}
     </div>

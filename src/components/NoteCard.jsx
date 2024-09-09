@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import apiUrl, { s3BucketUrl } from '../Util/api-url';
+import { s3BucketUrl } from '../Util/api-url';
 
 export default function NoteCard({ note }) {
   const cardImage = note.image

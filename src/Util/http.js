@@ -21,7 +21,7 @@ export async function fetchNotes({ searchTerm }) {
     );
   }
 
-  const { notes } = await response.json();
+  const { notes = [] } = await response.json();
   return notes;
 }
 

@@ -1,6 +1,22 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { setHome } from '../../redux/actions';
+
 export default function AboutMe() {
+  const dispatch = useDispatch();
+  const isMobile = useSelector((state) => state.isMobile);
+
+  const toggleNav = () => {
+    event.preventDefault();
+    dispatch(setHome(true));
+  };
+
   return (
     <div className="aboutMe">
+      {isMobile && (
+        <button className="toggle" onClick={toggleNav}>
+          nav
+        </button>
+      )}
       <div className="introduction">
         <p className="status">넘어져도 다시 도전하는</p>
         <span className="name">정재영</span>

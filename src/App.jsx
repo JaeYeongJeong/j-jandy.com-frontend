@@ -16,6 +16,9 @@ import Login, { action as loginAction } from './pages/Login';
 import Regist, { action as registAction } from './pages/Regist';
 import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
+import ScrollToTop from './Util/scrollToTop';
+import store from '../redux/store';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -44,11 +47,11 @@ const router = createBrowserRouter([
         loader: notesLoader,
         children: [
           {
-            path: '/notes/:id',
+            path: ':id',
             element: <Note />,
           },
           {
-            path: '/notes/edit/:id',
+            path: 'edit/:id',
             element: <EditNote />,
             action: createNoteAction,
           },
@@ -84,9 +87,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={router} />
-    </>
+    </Provider>
   );
 }
 
