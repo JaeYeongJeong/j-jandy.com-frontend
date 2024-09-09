@@ -16,7 +16,6 @@ import Login, { action as loginAction } from './pages/Login';
 import Regist, { action as registAction } from './pages/Regist';
 import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
-import ScrollToTop from './Util/scrollToTop';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
 

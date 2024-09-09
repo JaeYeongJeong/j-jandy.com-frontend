@@ -1,7 +1,7 @@
 import { defer, Outlet, useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { checkSession } from '../Util/http';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMobile } from '../../redux/actions';
 
