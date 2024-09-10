@@ -1,7 +1,10 @@
 import { useNavigate, useRouteLoaderData } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setHome } from '../../redux/actions';
+import menuIcon from '../assets/icon/menu-burger.png';
+import plusIcon from '../assets/icon/plus.png';
+import searchIcon from '../assets/icon/search.png';
 
 export default function NoteHeader() {
   const searchElement = useRef();
@@ -9,7 +12,7 @@ export default function NoteHeader() {
   const dispatch = useDispatch();
   const session = useRouteLoaderData('root');
   const isMobile = useSelector((state) => state.isMobile);
-  const isHome = useSelector((state) => state.isHome);
+
   function handleSubmit(event) {
     event.preventDefault();
     const searchTerm = searchElement.current.value.trim();
@@ -34,18 +37,26 @@ export default function NoteHeader() {
 
   return (
     <div className="note-header-container">
-      <form onSubmit={handleSubmit}>
-        {isMobile && (
-          <button type="button" onClick={handleHome}>
-            home
+      <button
+        type="button"
+        onClick={handleHome}
+        style={{ visibility: isMobile ? 'visible' : 'hidden' }}
+      >
+        <img className="icon" src={menuIcon} alt="Menu Icon" />
+      </button>
+      <div className="searchbar-container">
+        <div className="block" />
+        <form onSubmit={handleSubmit}>
+          <input type="search" ref={searchElement} />
+          <button type="submit">
+            {' '}
+            <img className="icon" src={searchIcon} alt="search" />
           </button>
-        )}
-        <input type="search" ref={searchElement} />
-        <button type="submit">search</button>
-        <button type="button" onClick={handleAdd}>
-          Add
-        </button>
-      </form>
+        </form>
+      </div>
+      <button type="button" onClick={handleAdd}>
+        <img className="icon" src={plusIcon} alt="add note" />
+      </button>
     </div>
   );
 }

@@ -1,11 +1,28 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
 import apiUrl from '../Util/api-url';
+import { useDispatch, useSelector } from 'react-redux';
+import menuIcon from '../assets/icon/menu-burger.png';
+import { setHome } from '../../redux/actions';
 
 export default function Regist() {
   const actionData = useActionData();
+  const dispatch = useDispatch();
+  const isMobile = useSelector((state) => state.isMobile);
+
+  const toggleNav = () => {
+    event.preventDefault();
+    dispatch(setHome(true));
+  };
 
   return (
     <div className="note-form-container">
+      {isMobile && (
+        <>
+          <button className="menu-button" onClick={toggleNav}>
+            <img className="icon" src={menuIcon} alt="Menu Icon" />
+          </button>
+        </>
+      )}
       <Form method="post" action="/regist">
         <div className="note-form-chd">
           <label htmlFor="id">ID</label>
@@ -23,8 +40,8 @@ export default function Regist() {
           />
           <label htmlFor="name">Nickname</label>
           <input id="name" type="text" name="name" required />
+          <button type="submit">regist</button>
         </div>
-        <button type="submit">regist</button>
       </Form>
       {actionData?.error && <p style={{ color: 'red' }}>{actionData.error}</p>}
     </div>

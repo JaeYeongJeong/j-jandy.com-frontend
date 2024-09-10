@@ -45,6 +45,10 @@ li {
   list-style: none;
 }
 
+button {
+  margin: 0;
+}
+
 .main {
   background-color: #242424;
   overflow: auto;
@@ -153,16 +157,24 @@ li {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
-
   /* 배경 이미지 투명도 설정 */
   position: relative;
   isolation: isolate;
 }
 
-.toggle {
+.aboutMe .menu-button {
   position: absolute;
   top: 0;
   left: 0;
+  padding: 8px;
+  margin: 16px;
+  background-color: transparent;
+  border: unset;
+}
+
+.icon {
+  filter: invert(80%);
+  width: 18px;
 }
 
 /* 배경 이미지 투명도 설정 */
@@ -173,6 +185,10 @@ li {
   z-index: -1;
   inset: 0;
   opacity: 0.3;
+}
+
+.aboutMe-container {
+  padding: 8px 16px;
 }
 
 .introduction {
@@ -217,6 +233,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 16px;
 }
 
 .notes {
@@ -370,15 +387,16 @@ li {
 
 .note-form-container {
   display: block;
-  padding: 1rem;
+  padding: 16px 16px;
+  margin: auto;
   font-size: 1.5rem;
 }
 
 .note-form-chd {
   display: flex;
   flex-direction: column;
-  padding-bottom: 0.5rem;
-  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
 }
 
 .note-form-control {
@@ -390,6 +408,7 @@ li {
 .note-form-container textarea,
 .note-form-container input {
   padding: 1rem;
+  outline: none;
 }
 
 .note-form-container textarea {
@@ -397,45 +416,64 @@ li {
   resize: none;
 }
 
-.note-form-container button {
-  font-size: 1rem;
-  padding: 4px 12px;
-  margin: 0 0.5rem;
+.menu-button {
+  background-color: transparent;
   border: unset;
-  border-radius: 4px;
 }
 
-.note-form-container button:hover {
-  background-color: orange;
-  text-shadow: 2px 2px 1px orangered;
+.note-form-container button {
+  font-size: 1.2rem;
+  padding: 8px;
+  border: unset;
+  border-end-end-radius: 16px;
+  cursor: pointer;
 }
 
 .note-header-container {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin: 8px 0px 16px 0px;
 }
 
 .note-header-container form {
   display: flex;
-  justify-content: center;
-  width: inherit;
+  justify-content: end;
+  width: 100%;
 }
 
 .note-header-container input {
-  width: 40%;
+  width: 100%;
+  margin: 4px 0px;
+  background-color: transparent;
+  border: unset;
+  outline: none;
 }
 
 .note-header-container button {
-  font-size: 1rem;
-  padding: 4px 12px;
-  margin: 0 0 0 0.5rem;
+  padding: 8px 8px;
   border: unset;
-  border-radius: 4px;
+  border-radius: 16px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.note-header-container button:hover {
-  background-color: orange;
-  text-shadow: 2px 2px 1px orangered;
+.searchbar-container {
+  display: flex;
+  justify-content: end;
+  background-color: #141414;
+  border-radius: 16px;
+  width: 60%;
+}
+
+.searchbar-container .block {
+  width: 34px;
+  height: 40px;
+}
+
+.searchbar-container button {
+  width: 52px;
+  height: 40px;
 }
 
 #image-preview {
