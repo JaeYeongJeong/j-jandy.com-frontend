@@ -14,7 +14,9 @@ export default function NoteSearch() {
         <Await resolve={searchResult}>
           {(loadedNote) => {
             if (loadedNote.length === 0) {
-              return <p>Not found</p>;
+              return (
+                <p style={{ fontSize: '24px' }}>Search results not found.</p>
+              );
             }
             return <SearchedNotesList notes={loadedNote} />;
           }}

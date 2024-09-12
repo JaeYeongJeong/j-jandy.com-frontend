@@ -1,27 +1,36 @@
 import { Form, redirect, useActionData, useNavigate } from 'react-router-dom';
 import apiUrl from '../Util/api-url';
+import { setHome } from '../../redux/actions';
+import menuIcon from '../assets/icon/menu-burger.png';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Login() {
   const actionData = useActionData();
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isMobile = useSelector((state) => state.isMobile);
 
-  const handleLegist = () => {
-    navigate('/regist');
+  const toggleNav = () => {
+    event.preventDefault();
+    dispatch(setHome(true));
   };
 
   return (
     <div className="note-form-container">
+      {isMobile && (
+        <>
+          <button className="menu-button" onClick={toggleNav}>
+            <img className="icon" src={menuIcon} alt="Menu Icon" />
+          </button>
+        </>
+      )}
       <Form method="post" action="/login">
         <div className="note-form-chd">
           <label htmlFor="id">ID</label>
           <input id="id" type="text" name="id" required />
           <label htmlFor="password">Password</label>
           <input id="password" type="text" name="password" required />
+          <button type="submit">Login</button>
         </div>
-        <button type="submit">Login</button>
-        <button type="button" onClick={handleLegist}>
-          Join us
-        </button>
       </Form>
       {actionData?.error && <p style={{ color: 'red' }}>{actionData.error}</p>}
     </div>

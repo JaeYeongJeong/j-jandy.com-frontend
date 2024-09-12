@@ -1,4 +1,5 @@
 let apiUrl = 'https://localhost:8080';
+let s3BucketUrl = 'https://localhost:8080';
 
 if (import.meta.env.VITE_API_URL) {
   apiUrl = '/api';
@@ -8,4 +9,9 @@ if (import.meta.env.VITE_API_URL) {
   }
 }
 
+if (import.meta.env.VITE_S3_URL) {
+  s3BucketUrl = import.meta.env.VITE_S3_URL;
+}
+
 export default apiUrl;
+export { s3BucketUrl };

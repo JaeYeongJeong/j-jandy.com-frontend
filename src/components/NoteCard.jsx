@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import apiUrl from '../Util/api-url';
+import { s3BucketUrl } from '../Util/api-url';
 
 export default function NoteCard({ note }) {
   const cardImage = note.image
-    ? `${apiUrl}/${note.image}`
-    : `${apiUrl}/noImage.jpg`;
+    ? `${s3BucketUrl}/${note.image}`
+    : `${s3BucketUrl}/upload/noImage.jpg`;
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',

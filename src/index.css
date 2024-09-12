@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.9);
-  background-color: #141414;
+  background-color: #242424;
 
   /* font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -17,12 +17,16 @@
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 body,
 html {
   overflow: auto;
+}
+
+#root {
+  height: 100%;
 }
 
 h2 {
@@ -41,15 +45,26 @@ li {
   list-style: none;
 }
 
-main {
-  width: 85%;
+button {
+  margin: 0;
+}
+
+.main {
   background-color: #242424;
   overflow: auto;
+  width: 100%;
+  margin-left: 328px;
+}
+
+.main-mobile {
+  background-color: #242424;
+  overflow: auto;
+  width: 100%;
 }
 
 .root-layout {
   display: flex;
-  height: 100vh;
+  flex-direction: row;
 }
 
 .navbar {
@@ -60,14 +75,37 @@ main {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 
-  width: 15%;
   min-width: 280px;
-  height: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   font-size: 2rem;
   font-weight: bold;
   line-height: 2.5;
   text-decoration: none;
+
+  background-color: #141414;
+}
+
+.navbar-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  min-width: 280px;
+  height: 100vh;
+  width: 100%;
+
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 2.5;
+  text-decoration: none;
+  background-color: #141414;
 }
 
 .navbar ul {
@@ -80,7 +118,7 @@ main {
   user-select: none;
 }
 
-.navbar .dot {
+.dot {
   margin-left: 3px;
   color: orange;
 }
@@ -111,17 +149,32 @@ main {
 
 .aboutMe {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
   background-image: url('assets/ski.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
-
   /* 배경 이미지 투명도 설정 */
   position: relative;
   isolation: isolate;
+}
+
+.aboutMe .menu-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px;
+  margin: 16px;
+  background-color: transparent;
+  border: unset;
+}
+
+.icon {
+  filter: invert(80%);
+  width: 18px;
 }
 
 /* 배경 이미지 투명도 설정 */
@@ -132,6 +185,10 @@ main {
   z-index: -1;
   inset: 0;
   opacity: 0.3;
+}
+
+.aboutMe-container {
+  padding: 8px 16px;
 }
 
 .introduction {
@@ -176,7 +233,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #242424;
+  margin: 16px;
 }
 
 .notes {
@@ -185,15 +242,13 @@ main {
   justify-content: center;
   align-items: center;
 
-  padding: 8px;
-
-  background-color: #242424;
+  padding: 8px 16px;
 }
 
 .notes-container {
   display: grid;
-  grid-gap: 32px;
-  width: inherit;
+  grid-gap: 16px;
+  width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -202,7 +257,7 @@ main {
   --width: 25%;
   grid-template-columns: repeat(
     var(--card-count),
-    calc(var(--width) - (32px * var(--spacer) / var(--card-count)))
+    calc(var(--width) - (16px * var(--spacer) / var(--card-count)))
   );
 }
 
@@ -227,10 +282,10 @@ main {
   }
 }
 
-notes-search-container {
+.notes-search-container {
   display: grid;
-  grid-gap: 32px;
-  width: inherit;
+  grid-gap: 16px;
+  width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
@@ -239,7 +294,7 @@ notes-search-container {
   --width: 25%;
   grid-template-columns: repeat(
     var(--card-count),
-    calc(var(--width) - (32px * var(--spacer) / var(--card-count)))
+    calc(var(--width) - (16px * var(--spacer) / var(--card-count)))
   );
 }
 
@@ -332,15 +387,16 @@ notes-search-container {
 
 .note-form-container {
   display: block;
-  padding: 1rem;
+  padding: 16px 16px;
+  margin: auto;
   font-size: 1.5rem;
 }
 
 .note-form-chd {
   display: flex;
   flex-direction: column;
-  padding-bottom: 0.5rem;
-  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
 }
 
 .note-form-control {
@@ -352,6 +408,7 @@ notes-search-container {
 .note-form-container textarea,
 .note-form-container input {
   padding: 1rem;
+  outline: none;
 }
 
 .note-form-container textarea {
@@ -359,49 +416,79 @@ notes-search-container {
   resize: none;
 }
 
-.note-form-container button {
-  font-size: 1rem;
-  padding: 4px 12px;
-  margin: 0 0.5rem;
+.menu-button {
+  background-color: transparent;
   border: unset;
-  border-radius: 4px;
 }
 
-.note-form-container button:hover {
-  background-color: orange;
-  text-shadow: 2px 2px 1px orangered;
+.note-form-container button {
+  font-size: 1.2rem;
+  padding: 8px;
+  border: unset;
+  border-end-end-radius: 16px;
+  cursor: pointer;
 }
 
 .note-header-container {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   margin: 8px 0px 16px 0px;
 }
 
 .note-header-container form {
   display: flex;
-  justify-content: center;
-  width: inherit;
+  justify-content: end;
+  width: 100%;
 }
 
 .note-header-container input {
-  width: 40%;
+  width: 100%;
+  margin: 4px 0px;
+  background-color: transparent;
+  border: unset;
+  outline: none;
 }
 
 .note-header-container button {
-  font-size: 1rem;
-  padding: 4px 12px;
-  margin: 0 0 0 0.5rem;
+  padding: 8px 8px;
   border: unset;
-  border-radius: 4px;
+  border-radius: 16px;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.note-header-container button:hover {
-  background-color: orange;
-  text-shadow: 2px 2px 1px orangered;
+.searchbar-container {
+  display: flex;
+  justify-content: end;
+  background-color: #141414;
+  border-radius: 16px;
+  width: 60%;
+}
+
+.searchbar-container .block {
+  width: 34px;
+  height: 40px;
+}
+
+.searchbar-container button {
+  width: 52px;
+  height: 40px;
 }
 
 #image-preview {
   width: 5rem;
   height: 5rem;
   object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .notes-container {
+    --card-count: 1;
+    --width: 100%;
+  }
+
+  .navbar {
+    width: 100%;
+  }
 }
