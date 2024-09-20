@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://tragic-evonne-jaey0394-b649cea3.koyeb.app/:splat"
+  to = "http://13.209.25.64:8000/:splat"
   status = 200
   force = true
 
