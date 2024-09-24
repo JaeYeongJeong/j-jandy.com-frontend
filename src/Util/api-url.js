@@ -1,7 +1,7 @@
 let apiUrl = 'https://localhost:8080';
 let s3BucketUrl = 'https://localhost:8080';
 
-if (import.meta.env.VITE_API_URL) {
+if (import.meta.env.VITE_API_URL && import.meta.env.MODE != 'development') {
   apiUrl = import.meta.env.VITE_API_URL;
 
   if (apiUrl.endsWith('/')) {
