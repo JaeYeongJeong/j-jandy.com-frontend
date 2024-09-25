@@ -335,6 +335,7 @@ button {
 
 .note-item-content {
   padding: 1rem;
+  height: 120px;
   overflow: hidden;
 }
 
@@ -349,7 +350,7 @@ button {
 
 .note-item-description {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   /* 
@@ -381,6 +382,7 @@ button {
   width: 80%;
   max-height: 80vh;
   object-fit: contain;
+  margin: 24px 0;
 }
 
 .note-detail-img {
@@ -503,8 +505,8 @@ button {
     --card-count: 1;
     --width: 100%;
   }
+}
 
-  .navbar {
-    width: 100%;
-  }
+.mobile-home .navbar {
+  width: 100%;
 }

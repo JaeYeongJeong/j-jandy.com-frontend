@@ -13,18 +13,12 @@ export default function NavBar({ className }) {
     await logout();
   }
 
-  function clickHandler() {
-    if (isMobile) {
-      dispatch(setHome(false));
-    }
-  }
-
   return (
-    <div className={className}>
+    <div className="navbar">
       <div>
         <ul>
           <li>
-            <Link to="/aboutme" className="link" onClick={clickHandler}>
+            <Link to="/aboutme" className="link">
               About me
             </Link>
             <span className="dot">.</span>
@@ -36,13 +30,13 @@ export default function NavBar({ className }) {
             <span className="dot">.</span>
           </li>
           <li>
-            <Link to="/projects" className="link" onClick={clickHandler}>
+            <Link to="/projects" className="link">
               Projects
             </Link>
             <span className="dot">.</span>
           </li>
           <li>
-            <Link to="/notes" className="link" onClick={clickHandler}>
+            <Link to="/notes" className="link">
               Notes
             </Link>
             <span className="dot">.</span>
@@ -53,10 +47,10 @@ export default function NavBar({ className }) {
         <div className="navbar-info-login">
           {!isAuthenticated && (
             <>
-              <Link to="/regist" className="link" onClick={clickHandler}>
+              <Link to="/regist" className="link">
                 Join us.
               </Link>
-              <Link to="/login" className="link" onClick={clickHandler}>
+              <Link to="/login" className="link">
                 Loigin.
               </Link>
             </>

@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setHome } from '../../redux/actions';
 import menuIcon from '../assets/icon/menu-burger.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function AboutMe() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isMobile = useSelector((state) => state.isMobile);
 
   const toggleNav = () => {
     event.preventDefault();
-    dispatch(setHome(true));
+    navigate(`/mhome`);
   };
 
   return (

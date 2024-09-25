@@ -32,7 +32,7 @@ export default function NoteHeader() {
 
   function handleHome() {
     event.preventDefault();
-    dispatch(setHome(true));
+    return navigate(`/mhome`);
   }
 
   return (

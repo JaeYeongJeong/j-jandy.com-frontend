@@ -31,12 +31,9 @@ export default function RootLayout() {
     <div className="root-layout">
       {isMobile && (
         <>
-          {isHome && <NavBar className="navbar-mobile" />}
-          {!isHome && (
-            <div className="main-mobile">
-              <Outlet />
-            </div>
-          )}
+          <div className="main-mobile">
+            <Outlet />
+          </div>
         </>
       )}
       {!isMobile && (

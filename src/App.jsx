@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound';
 import ErrorPage from './pages/ErrorPage';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
+import MobileHome from './pages/MobileHome';
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
         path: '/regist',
         element: <Regist />,
         action: registAction,
+      },
+      {
+        path: '/mhome',
+        element: <MobileHome />,
       },
       {
         path: '*',
