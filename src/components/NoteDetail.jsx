@@ -46,7 +46,7 @@ export default function NoteDetail({ note }) {
           </div>
         </div>
       </article>
-      <div className="note-header-container">
+      <div className="note-footer-container">
         {isAuthenticated && (
           <>
             <button onClick={editHandler}>Edit</button>

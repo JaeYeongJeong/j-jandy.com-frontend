@@ -364,6 +364,7 @@ button {
 .note-detail {
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -457,7 +458,15 @@ button {
   outline: none;
 }
 
-.note-header-container button {
+.note-footer-container {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  margin: 8px 0px 16px 0px;
+}
+
+.note-header-container button,
+.note-footer-container button {
   padding: 8px 8px;
   border: unset;
   border-radius: 16px;
