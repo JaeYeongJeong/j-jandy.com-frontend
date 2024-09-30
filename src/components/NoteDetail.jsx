@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { deleteNote } from '../Util/http';
 import { s3BucketUrl } from '../Util/api-url';
 import { useSelector } from 'react-redux';
+import { scrollToTop } from '../Util/scrollToTop';
 
 export default function NoteDetail({ note }) {
   const navigate = useNavigate();
@@ -18,14 +19,14 @@ export default function NoteDetail({ note }) {
   });
 
   function editHandler() {
-    navigate(`/notes/edit/${param.id}`);
+    scrollToTop();
+    return navigate(`/notes/edit/${param.id}`);
   }
 
   async function deleteHandler() {
     if (confirm('정말로 삭제하시겠습니까?')) {
       await deleteNote(param.id);
-
-      navigate('/notes');
+      return navigate('/notes');
     }
     return;
   }

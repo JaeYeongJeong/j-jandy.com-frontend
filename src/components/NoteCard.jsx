@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { s3BucketUrl } from '../Util/api-url';
+import { scrollToTop } from '../Util/scrollToTop';
 
 export default function NoteCard({ note }) {
   const cardImage = note.image
@@ -12,13 +13,6 @@ export default function NoteCard({ note }) {
     day: 'numeric',
     // weekday: 'long',
   });
-
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  }
 
   return (
     <div className="note-item" onClick={scrollToTop}>

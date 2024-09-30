@@ -9,6 +9,7 @@ import {
 import { checkSession, createNewNote, editNote } from '../Util/http';
 import { useDispatch } from 'react-redux';
 import { setAuthenticated } from '../../redux/actions';
+import { scrollToTop } from '../Util/scrollToTop';
 
 export default function NoteForm({ method, note }) {
   const [imagePreview, setImagePreview] = useState('');
@@ -40,7 +41,7 @@ export default function NoteForm({ method, note }) {
   const isSubmitting = navigation.status === 'submitting';
 
   function cancelHandler() {
-    navigate('..');
+    navigate(-1);
   }
 
   return (

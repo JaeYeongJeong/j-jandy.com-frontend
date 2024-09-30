@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { checkSession } from '../Util/http';
 import { useEffect } from 'react';
