@@ -1,7 +1,6 @@
 import { useNavigate, useRouteLoaderData } from 'react-router-dom';
 import { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setHome } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 import menuIcon from '../assets/icon/menu-burger.png';
 import plusIcon from '../assets/icon/plus.png';
 import searchIcon from '../assets/icon/search.png';
@@ -9,8 +8,8 @@ import searchIcon from '../assets/icon/search.png';
 export default function NoteHeader() {
   const searchElement = useRef();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const session = useRouteLoaderData('root');
+  const isAuthentiacted = session.session.isAuthenticated;
   const isMobile = useSelector((state) => state.isMobile);
 
   function handleSubmit(event) {
@@ -21,11 +20,11 @@ export default function NoteHeader() {
   }
 
   function handleAdd() {
-    const isAuthentiacted = session.session.isAuthenticated;
     if (!isAuthentiacted) {
       if (confirm('로그인이 필요합니다')) {
         return navigate('/login');
       }
+      return;
     }
     return navigate(`/notes/create`);
   }

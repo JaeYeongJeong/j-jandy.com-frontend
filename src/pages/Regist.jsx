@@ -1,18 +1,11 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
 import apiUrl from '../Util/api-url';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import menuIcon from '../assets/icon/menu-burger.png';
-import { setHome } from '../../redux/actions';
 
 export default function Regist() {
   const actionData = useActionData();
-  const dispatch = useDispatch();
   const isMobile = useSelector((state) => state.isMobile);
-
-  const toggleNav = () => {
-    event.preventDefault();
-    dispatch(setHome(true));
-  };
 
   return (
     <div className="note-form-container">
@@ -27,10 +20,16 @@ export default function Regist() {
         <div className="note-form-chd">
           <label htmlFor="id">ID</label>
           <input id="id" type="id" name="id" required />
+        </div>
+        <div className="note-form-chd">
           <label htmlFor="email">Email</label>
           <input id="email" type="email" name="email" required />
+        </div>
+        <div className="note-form-chd">
           <label htmlFor="password">Password</label>
           <input id="password" type="password" name="password" required />
+        </div>
+        <div className="note-form-chd">
           <label htmlFor="confirm-password">Confirm password</label>
           <input
             id="confirm-password"
@@ -38,9 +37,15 @@ export default function Regist() {
             name="confirm-password"
             required
           />
+        </div>
+        <div className="note-form-chd">
           <label htmlFor="name">Nickname</label>
           <input id="name" type="text" name="name" required />
-          <button type="submit">regist</button>
+        </div>
+        <div className="note-form-chd">
+          <div className="note-footer-container">
+            <button type="submit">regist</button>
+          </div>
         </div>
       </Form>
       {actionData?.error && <p style={{ color: 'red' }}>{actionData.error}</p>}

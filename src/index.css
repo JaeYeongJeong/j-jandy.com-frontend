@@ -44,6 +44,10 @@ pre {
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
+form {
+  width: 100%;
+}
+
 ul {
   padding: 0;
 }
@@ -396,16 +400,16 @@ button {
 }
 
 .note-form-container {
-  display: block;
-  padding: 16px 16px;
-  margin: auto;
-  font-size: 1.5rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .note-form-chd {
   display: flex;
+  min-width: 400px;
   flex-direction: column;
-  max-width: 400px;
   padding: 0.5rem;
 }
 
@@ -417,26 +421,20 @@ button {
 
 .note-form-container textarea,
 .note-form-container input {
-  padding: 1rem;
+  border: unset;
+  background-color: #363636;
+  padding: 0.75rem;
   outline: none;
 }
 
 .note-form-container textarea {
-  height: 30vh;
+  height: 50vh;
   resize: none;
 }
 
 .menu-button {
   background-color: transparent;
   border: unset;
-}
-
-.note-form-container button {
-  font-size: 1.2rem;
-  padding: 8px;
-  border: unset;
-  border-end-end-radius: 16px;
-  cursor: pointer;
 }
 
 .note-header-container {

@@ -8,9 +8,7 @@ export default function NoteDetail({ note }) {
   const isAuthenticated = session.session.isAuthenticated;
   const param = useParams();
 
-  const cardImage = note.image
-    ? `${s3BucketUrl}/${note.image}`
-    : `${s3BucketUrl}/noImage.jpg`;
+  const cardImage = note.image ? `${s3BucketUrl}/${note.image}` : '';
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',

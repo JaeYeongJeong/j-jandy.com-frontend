@@ -1,18 +1,11 @@
-import { Form, redirect, useActionData, useNavigate } from 'react-router-dom';
+import { Form, redirect, useActionData } from 'react-router-dom';
 import apiUrl from '../Util/api-url';
-import { setHome } from '../../redux/actions';
 import menuIcon from '../assets/icon/menu-burger.png';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Login() {
   const actionData = useActionData();
-  const dispatch = useDispatch();
   const isMobile = useSelector((state) => state.isMobile);
-
-  const toggleNav = () => {
-    event.preventDefault();
-    dispatch(setHome(true));
-  };
 
   return (
     <div className="note-form-container">
@@ -27,9 +20,15 @@ export default function Login() {
         <div className="note-form-chd">
           <label htmlFor="id">ID</label>
           <input id="id" type="text" name="id" required />
+        </div>
+        <div className="note-form-chd">
           <label htmlFor="password">Password</label>
           <input id="password" type="text" name="password" required />
-          <button type="submit">Login</button>
+        </div>
+        <div className="note-form-chd">
+          <div className="note-footer-container">
+            <button type="submit">Login</button>
+          </div>
         </div>
       </Form>
       {actionData?.error && <p style={{ color: 'red' }}>{actionData.error}</p>}

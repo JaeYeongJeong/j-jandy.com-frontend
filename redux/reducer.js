@@ -1,8 +1,8 @@
-import { SET_MOBILE, SET_HOME } from './actions';
+import { SET_MOBILE, SET_LOGIN } from './actions';
 
 const initialState = {
   isMobile: false,
-  isHome: true,
+  isLogin: false,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -12,10 +12,10 @@ const appReducer = (state = initialState, action) => {
         ...state,
         isMobile: action.payload,
       };
-    case SET_HOME:
+    case SET_LOGIN:
       return {
         ...state,
-        isHome: action.payload,
+        isLogin: action.payload,
       };
     default:
       return state;

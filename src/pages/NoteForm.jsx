@@ -79,13 +79,15 @@ export default function NoteForm({ method, note }) {
             defaultValue={note ? note.description : ''}
           />
         </div>
-        <div className="note-form-control">
-          <button type="button" onClick={cancelHandler}>
-            Cancel
-          </button>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Submitting...' : 'Save'}
-          </button>
+        <div className="note-form-chd">
+          <div className="note-footer-container">
+            <button type="button" onClick={cancelHandler}>
+              Cancel
+            </button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Submitting...' : 'Save'}
+            </button>
+          </div>
         </div>
       </Form>
     </div>

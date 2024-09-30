@@ -4,7 +4,7 @@ import { s3BucketUrl } from '../Util/api-url';
 export default function NoteCard({ note }) {
   const cardImage = note.image
     ? `${s3BucketUrl}/${note.image}`
-    : `${s3BucketUrl}/upload/noImage.jpg`;
+    : './src/assets/noImage.jpg';
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',

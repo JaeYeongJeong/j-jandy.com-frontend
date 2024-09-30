@@ -7,7 +7,6 @@ import { setMobile } from '../../redux/actions';
 
 export default function RootLayout() {
   const dispatch = useDispatch();
-  const isHome = useSelector((state) => state.isHome);
   const isMobile = useSelector((state) => state.isMobile);
   const pathName = useLocation();
 

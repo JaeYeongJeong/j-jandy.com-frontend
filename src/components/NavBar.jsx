@@ -1,13 +1,9 @@
 import { Link, useRouteLoaderData } from 'react-router-dom';
 import { logout } from '../Util/http';
-import { useDispatch, useSelector } from 'react-redux';
-import { setHome } from '../../redux/actions';
 
 export default function NavBar({ className }) {
   const session = useRouteLoaderData('root');
   const isAuthenticated = session.session.isAuthenticated;
-  const dispatch = useDispatch();
-  const isMobile = useSelector((state) => state.isMobile);
 
   async function handleLogout() {
     await logout();
