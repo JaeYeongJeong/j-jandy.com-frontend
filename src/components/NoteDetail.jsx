@@ -1,12 +1,12 @@
-import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { deleteNote } from '../Util/http';
 import { s3BucketUrl } from '../Util/api-url';
+import { useSelector } from 'react-redux';
 
 export default function NoteDetail({ note }) {
   const navigate = useNavigate();
-  const session = useRouteLoaderData('root');
-  const isAuthenticated = session.session.isAuthenticated;
   const param = useParams();
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   const cardImage = note.image ? `${s3BucketUrl}/${note.image}` : '';
 

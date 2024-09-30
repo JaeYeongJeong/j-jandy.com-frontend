@@ -1,14 +1,13 @@
-import { defer, Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import { checkSession } from '../Util/http';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMobile } from '../../redux/actions';
+import { setAuthenticated, setMobile } from '../../redux/actions';
 
 export default function RootLayout() {
   const dispatch = useDispatch();
   const isMobile = useSelector((state) => state.isMobile);
-  const pathName = useLocation();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -18,13 +17,18 @@ export default function RootLayout() {
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
-    const element = document.documentElement;
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
-  }, [dispatch, pathName]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const verifySession = async () => {
+      const sessionData = await checkSession();
+      dispatch(setAuthenticated(sessionData.isAuthenticated));
+    };
+    verifySession();
+  }, [dispatch]);
 
   return (
     <div className="root-layout">
@@ -45,10 +49,4 @@ export default function RootLayout() {
       )}
     </div>
   );
-}
-
-export async function loader() {
-  return defer({
-    session: await checkSession(),
-  });
 }

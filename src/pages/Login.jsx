@@ -1,11 +1,22 @@
-import { Form, redirect, useActionData } from 'react-router-dom';
-import apiUrl from '../Util/api-url';
+import { Form, useActionData, useNavigate } from 'react-router-dom';
 import menuIcon from '../assets/icon/menu-burger.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthenticated } from '../../redux/actions';
+import { checkSession, login } from '../Util/http';
+import { useEffect } from 'react';
 
 export default function Login() {
   const actionData = useActionData();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isMobile = useSelector((state) => state.isMobile);
+
+  useEffect(() => {
+    if (actionData && actionData.isAuthenticated) {
+      dispatch(setAuthenticated(actionData.isAuthenticated));
+      navigate(-1);
+    }
+  }, [actionData, dispatch]);
 
   return (
     <div className="note-form-container">
@@ -37,28 +48,17 @@ export default function Login() {
 }
 
 export async function action({ request }) {
-  const url = `${apiUrl}/login`;
   const formData = await request.formData();
   const id = formData.get('id');
   const password = formData.get('password');
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id, password }),
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData.message || 'Invalid credentials' };
-    }
-
-    return redirect('/');
+    await login({ id, password });
+    const sessionData = await checkSession();
+    return { isAuthenticated: sessionData.isAuthenticated };
   } catch (error) {
-    return { error: 'An unexpected error occurred. Please try again later.' };
+    throw new Error(
+      error.message || 'Something went wrong while login action.'
+    );
   }
 }

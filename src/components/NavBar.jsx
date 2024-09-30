@@ -1,12 +1,16 @@
-import { Link, useRouteLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logout } from '../Util/http';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthenticated } from '../../redux/actions';
 
-export default function NavBar({ className }) {
-  const session = useRouteLoaderData('root');
-  const isAuthenticated = session.session.isAuthenticated;
+export default function NavBar() {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const dispatch = useDispatch();
 
-  async function handleLogout() {
+  async function handleLogout(e) {
+    e.preventDefault();
     await logout();
+    dispatch(setAuthenticated(false));
   }
 
   return (

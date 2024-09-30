@@ -1,12 +1,11 @@
 import { useNavigate, useParams, useRouteLoaderData } from 'react-router-dom';
 import NoteForm from './NoteForm';
 import { useEffect } from 'react';
-import ErrorPage from './ErrorPage';
+import { useSelector } from 'react-redux';
 
 export default function EditNote() {
   const navigate = useNavigate();
-  const session = useRouteLoaderData('root');
-  const isAuthenticated = session.session.isAuthenticated;
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -18,9 +17,5 @@ export default function EditNote() {
   const { id } = useParams();
   const note = notes.find((note) => note.id == id);
 
-  return isAuthenticated ? (
-    <NoteForm method="PATCH" note={note} />
-  ) : (
-    <ErrorPage />
-  );
+  return isAuthenticated ? <NoteForm method="PATCH" note={note} /> : null;
 }

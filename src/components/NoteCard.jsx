@@ -4,7 +4,7 @@ import { s3BucketUrl } from '../Util/api-url';
 export default function NoteCard({ note }) {
   const cardImage = note.image
     ? `${s3BucketUrl}/${note.image}`
-    : './src/assets/noImage.jpg';
+    : '/src/assets/noImage.jpg';
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',
@@ -13,8 +13,15 @@ export default function NoteCard({ note }) {
     // weekday: 'long',
   });
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
-    <div className="note-item">
+    <div className="note-item" onClick={scrollToTop}>
       <Link to={`/notes/${note.id}`} className="note-item-link">
         <img src={cardImage} alt={''} />
         <div className="note-item-content-container">

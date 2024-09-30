@@ -8,8 +8,7 @@ import searchIcon from '../assets/icon/search.png';
 export default function NoteHeader() {
   const searchElement = useRef();
   const navigate = useNavigate();
-  const session = useRouteLoaderData('root');
-  const isAuthentiacted = session.session.isAuthenticated;
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const isMobile = useSelector((state) => state.isMobile);
 
   function handleSubmit(event) {
@@ -20,7 +19,7 @@ export default function NoteHeader() {
   }
 
   function handleAdd() {
-    if (!isAuthentiacted) {
+    if (!isAuthenticated) {
       if (confirm('로그인이 필요합니다')) {
         return navigate('/login');
       }

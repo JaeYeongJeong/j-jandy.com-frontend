@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 import AboutMe from './pages/AboutMe';
-import RootLayout, { loader as rootLoader } from './pages/RootLayout';
+import RootLayout from './pages/RootLayout';
 import Projects from './pages/Projects';
 import Notes, { loader as notesLoader } from './pages/Notes';
 import Note from './pages/Note';
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootLayout />,
     id: 'root',
-    loader: rootLoader,
     errorElement: <ErrorPage />,
     children: [
       {

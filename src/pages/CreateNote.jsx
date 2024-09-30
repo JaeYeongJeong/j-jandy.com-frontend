@@ -1,12 +1,11 @@
-import { useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NoteForm from './NoteForm';
-import ErrorPage from './ErrorPage';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function CreateNote() {
   const navigate = useNavigate();
-  const session = useRouteLoaderData('root');
-  const isAuthenticated = session.session.isAuthenticated;
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -14,5 +13,5 @@ export default function CreateNote() {
     }
   }, [isAuthenticated, navigate]);
 
-  return isAuthenticated ? <NoteForm method="POST" /> : <ErrorPage />;
+  return isAuthenticated ? <NoteForm method="POST" /> : null;
 }

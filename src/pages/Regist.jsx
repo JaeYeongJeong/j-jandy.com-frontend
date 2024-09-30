@@ -1,7 +1,7 @@
 import { Form, redirect, useActionData } from 'react-router-dom';
-import apiUrl from '../Util/api-url';
 import { useSelector } from 'react-redux';
 import menuIcon from '../assets/icon/menu-burger.png';
+import { regist } from '../Util/http';
 
 export default function Regist() {
   const actionData = useActionData();
@@ -54,34 +54,23 @@ export default function Regist() {
 }
 
 export async function action({ request }) {
-  const url = `${apiUrl}/regist`;
   const formData = await request.formData();
   const id = formData.get('id');
   const email = formData.get('email');
   const password = formData.get('password');
   const confirmPassword = formData.get('confirm-password');
   const name = formData.get('name');
+
   if (password !== confirmPassword) {
     return { error: 'check your password' };
   }
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id, email, password, name }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      return { error: errorData || 'Failed to join' };
-    }
+    await regist({ id, email, password, name });
   } catch (error) {
-    return {
-      error: 'An unexpected error occurred. Please try again later.',
-    };
+    throw new Error(
+      error.message || 'Something went wrong while regist action.'
+    );
   }
 
   return redirect('/notes');

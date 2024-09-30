@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Form,
   useNavigate,
@@ -6,14 +6,25 @@ import {
   redirect,
   useActionData,
 } from 'react-router-dom';
-import { createNewNote, editNote } from '../Util/http';
+import { checkSession, createNewNote, editNote } from '../Util/http';
+import { useDispatch } from 'react-redux';
+import { setAuthenticated } from '../../redux/actions';
 
 export default function NoteForm({ method, note }) {
   const [imagePreview, setImagePreview] = useState('');
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const navigation = useNavigation();
   const actionData = useActionData();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (
+      actionData?.isAuthenticated == true ||
+      actionData?.isAuthenticated == false
+    ) {
+      dispatch(setAuthenticated(actionData.isAuthenticated));
+    }
+  }, [actionData, dispatch]);
 
   function handleImageChange(evnet) {
     const file = event.target.files[0];
@@ -31,13 +42,6 @@ export default function NoteForm({ method, note }) {
   function cancelHandler() {
     navigate('..');
   }
-
-  React.useEffect(() => {
-    if (actionData && actionData.error) {
-      setError(actionData.error);
-      alert(actionData.error);
-    }
-  }, [actionData]);
 
   return (
     <div className="note-form-container">
@@ -95,11 +99,24 @@ export default function NoteForm({ method, note }) {
 }
 
 export async function action({ request, params }) {
-  const method = request.method;
+  try {
+    const sessionData = await checkSession();
+    const isAuthenticated = sessionData.isAuthenticated;
+    if (!isAuthenticated) {
+      if (confirm('세션 만료')) {
+        redirect('/login');
+      }
+      return { isAuthenticated: isAuthenticated };
+    }
+  } catch (error) {
+    throw new Error(
+      error.message || 'Something went wrong while check session.'
+    );
+  }
 
+  const method = request.method;
   const data = await request.formData();
   const date = new Date().toLocaleString('en-US');
-
   const noteData = {
     title: data.get('title'),
     image: data.get('image'),
@@ -119,10 +136,6 @@ export async function action({ request, params }) {
 
     return redirect('/notes');
   } catch (error) {
-    return {
-      error:
-        error.message ||
-        'An unexpected error occurred. Please try again later.',
-    };
+    throw new Error(error.message || 'Something went wrong while form action.');
   }
 }

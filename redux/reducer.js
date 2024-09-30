@@ -1,8 +1,8 @@
-import { SET_MOBILE, SET_LOGIN } from './actions';
+import { SET_MOBILE, SET_AUTHENTICATED } from './actions';
 
 const initialState = {
   isMobile: false,
-  isLogin: false,
+  isAuthenticated: false,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -12,10 +12,10 @@ const appReducer = (state = initialState, action) => {
         ...state,
         isMobile: action.payload,
       };
-    case SET_LOGIN:
+    case SET_AUTHENTICATED:
       return {
         ...state,
-        isLogin: action.payload,
+        isAuthenticated: action.payload,
       };
     default:
       return state;
