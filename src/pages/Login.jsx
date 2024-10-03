@@ -18,31 +18,42 @@ export default function Login() {
     }
   }, [actionData, dispatch]);
 
+  function navMobileHome() {
+    event.preventDefault();
+    return navigate(`/mhome`);
+  }
+
   return (
-    <div className="note-form-container">
-      {isMobile && (
-        <>
-          <button className="menu-button" onClick={toggleNav}>
-            <img className="icon" src={menuIcon} alt="Menu Icon" />
-          </button>
-        </>
-      )}
-      <Form method="post" action="/login">
-        <div className="note-form-chd">
-          <label htmlFor="id">ID</label>
-          <input id="id" type="text" name="id" required />
-        </div>
-        <div className="note-form-chd">
-          <label htmlFor="password">Password</label>
-          <input id="password" type="text" name="password" required />
-        </div>
-        <div className="note-form-chd">
-          <div className="note-footer-container">
-            <button type="submit">Login</button>
+    <div className="note-form-container login">
+      <div className="header-navbar">
+        {isMobile && (
+          <>
+            <button className="menu-button" onClick={navMobileHome}>
+              <img className="icon" src={menuIcon} alt="Menu Icon" />
+            </button>
+          </>
+        )}
+      </div>
+      <div>
+        <Form method="post" action="/login">
+          <div className="note-form-chd">
+            <label htmlFor="id">ID</label>
+            <input id="id" type="text" name="id" required />
           </div>
-        </div>
-      </Form>
-      {actionData?.error && <p style={{ color: 'red' }}>{actionData.error}</p>}
+          <div className="note-form-chd">
+            <label htmlFor="password">Password</label>
+            <input id="password" type="text" name="password" required />
+          </div>
+          <div className="note-form-chd">
+            <div className="note-footer-container">
+              <button type="submit">Login</button>
+            </div>
+          </div>
+        </Form>
+        {actionData?.error && (
+          <p style={{ color: 'red' }}>{actionData.error}</p>
+        )}
+      </div>
     </div>
   );
 }

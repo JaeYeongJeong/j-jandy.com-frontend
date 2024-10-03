@@ -23,21 +23,22 @@ export default function NavBar() {
             </Link>
             <span className="dot">.</span>
           </li>
+
           <li>
-            <Link to="https://github.com/" className="link" target="_blank">
-              GitHub
-            </Link>
-            <span className="dot">.</span>
-          </li>
-          <li>
-            <Link to="/projects" className="link">
-              Projects
+            <Link to="/skills" className="link">
+              Skills
             </Link>
             <span className="dot">.</span>
           </li>
           <li>
             <Link to="/notes" className="link">
               Notes
+            </Link>
+            <span className="dot">.</span>
+          </li>
+          <li>
+            <Link to="https://github.com/" className="link" target="_blank">
+              GitHub
             </Link>
             <span className="dot">.</span>
           </li>
@@ -61,7 +62,7 @@ export default function NavBar() {
             </Link>
           )}
         </div>
-        <p className="navbar-info-updateDate">Last Update: 2024/09/09</p>
+        <p className="navbar-info-updateDate">Last Update: 2024/09/28</p>
       </div>
     </div>
   );

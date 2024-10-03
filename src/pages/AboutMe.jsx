@@ -22,6 +22,7 @@ export default function AboutMe() {
           </>
         )}
         <div className="introduction">
+          <p className="status">안녕하세요.</p>
           <p className="status">넘어져도 다시 도전하는</p>
           <span className="name">정재영</span>
           <span className="status">입니다.</span>

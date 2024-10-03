@@ -19,6 +19,7 @@ import ErrorPage from './pages/ErrorPage';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
 import MobileHome from './pages/MobileHome';
+import Skills from './pages/Skills';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/aboutme',
         element: <AboutMe />,
+      },
+      {
+        path: '/skills',
+        element: <Skills />,
       },
       {
         path: '/projects',
