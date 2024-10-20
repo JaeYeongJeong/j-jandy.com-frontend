@@ -37,7 +37,11 @@ export default function NavBar() {
             <span className="dot">.</span>
           </li>
           <li>
-            <Link to="https://github.com/" className="link" target="_blank">
+            <Link
+              to="https://github.com/JaeYeongJeong"
+              className="link"
+              target="_blank"
+            >
               GitHub
             </Link>
             <span className="dot">.</span>
