@@ -4,7 +4,7 @@ import { checkSession } from '../Util/http';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuthenticated, setMobile } from '../../redux/actions';
-
+import ScrollToTopButton from '../components/ScrollToTopButton';
 export default function RootLayout() {
   const dispatch = useDispatch();
   const isMobile = useSelector((state) => state.isMobile);
@@ -47,6 +47,7 @@ export default function RootLayout() {
           </div>
         </>
       )}
+      <ScrollToTopButton />
     </div>
   );
 }
