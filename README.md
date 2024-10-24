@@ -31,7 +31,6 @@ This project is a web application built using React. It provide my information a
 4. 환경 변수 설정.
 
 ```markdown
-- `MODE`: 실행 환경을 설정 (로컬에서는 'development'로 설정)
 - `VITE_API_URL`: API 서버의 URL
 - `VITE_S3_URL`: AWS S3에서 이미지를 가져올 URL
 ```
