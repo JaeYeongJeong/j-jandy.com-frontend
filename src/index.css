@@ -42,6 +42,9 @@ pre {
   white-space: -moz-pre-wrap; /* Firefox */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
 }
 
 form {
@@ -473,6 +476,7 @@ button {
   border: unset;
   border-radius: 16px;
   background-color: transparent;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
 }
 

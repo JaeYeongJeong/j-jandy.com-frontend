@@ -37,6 +37,7 @@ const ScrollToTopButton = () => {
         borderRadius: '4px',
         backgroundColor: isHovered ? 'orange' : '#484848',
         fontSize: '12px',
+        color: 'rgba(255, 255, 255, 0.9)',
         cursor: 'pointer',
         display: 'flex',
         justifyContent: 'center',

@@ -48,7 +48,7 @@ export default function Regist() {
             />
           </div>
           <div className="note-form-chd">
-            <label htmlFor="name">Nickname</label>
+            <label htmlFor="name">Name (nickname)</label>
             <input id="name" type="text" name="name" required />
           </div>
           <div className="note-form-chd">
