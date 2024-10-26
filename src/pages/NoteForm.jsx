@@ -45,7 +45,7 @@ export default function NoteForm({ method, note }) {
 
   return (
     <div className="note-form-container">
-      <Form method={method} as="form" enctype="multipart/form-data">
+      <Form method={method} as="form" encType="multipart/form-data">
         <div className="note-form-chd">
           <label htmlFor="title">Title</label>
           <input

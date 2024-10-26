@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
     server: {
       https: isHttps
         ? {
-          key: fs.readFileSync("../localhost-key.pem"),
-          cert: fs.readFileSync("../localhost.pem"),
+          key: fs.readFileSync(env.VITE_KEY),
+          cert: fs.readFileSync(env.VITE_CERT),
         }
         : false,
       port: 5173,
