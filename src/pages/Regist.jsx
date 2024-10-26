@@ -79,11 +79,8 @@ export async function action({ request }) {
 
   try {
     await regist({ id, email, password, name });
+    return redirect('/');
   } catch (error) {
-    throw new Error(
-      error.message || 'Something went wrong while regist action.'
-    );
+    return { error: error.message || 'Registration failed due to an error.' };
   }
-
-  return redirect('/notes');
 }

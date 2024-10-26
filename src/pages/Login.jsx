@@ -68,8 +68,8 @@ export async function action({ request }) {
     const sessionData = await checkSession();
     return { isAuthenticated: sessionData.isAuthenticated };
   } catch (error) {
-    throw new Error(
-      error.message || 'Something went wrong while login action.'
-    );
+    return {
+      error: error.message || 'Something went wrong while login action.',
+    };
   }
 }

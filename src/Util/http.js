@@ -154,9 +154,15 @@ export async function login({ id, password }) {
       body: JSON.stringify({ id, password }),
       credentials: 'include',
     });
+
+    if (response.status === 401) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to login');
+    }
+
     if (!response.ok) {
       const errorData = await response.json();
-      return { error: errorData.message || 'Failed to login' };
+      throw new Error(errorData.message || 'Failed to login');
     }
 
   } catch (error) {
@@ -188,10 +194,17 @@ export async function regist({ id, email, password, name }) {
       },
       body: JSON.stringify({ id, email, password, name }),
     });
+
+    if (response.status === 409) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Something went wrong while regist.');
+    }
+
     if (!response.ok) {
       const errorData = await response.json();
       return { error: errorData || 'Failed to join' };
     }
+
     const data = await response.json();
     return data;
   } catch (error) {
