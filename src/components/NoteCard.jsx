@@ -5,7 +5,7 @@ import { scrollToTop } from '../Util/scrollToTop';
 export default function NoteCard({ note }) {
   const cardImage = note.image
     ? `${s3BucketUrl}/${note.image}`
-    : '/src/assets/noImage.jpg';
+    : `${s3BucketUrl}/uploads/noImage.jpg`;
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
     year: 'numeric',
