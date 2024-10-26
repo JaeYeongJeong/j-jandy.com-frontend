@@ -31,7 +31,7 @@ This project is a web application built using React. It provide my information a
 4. 환경 변수 설정.
 
 ```markdown
-- `VITE_PROTOCAL`: http 또는 hppts
+- `VITE_PROTOCAL`: http 또는 https
 - `VITE_KEY`: ssl인증서 경로 (https 설정시 필수)
 - `VITE_CERT`: ssl인증서 경로 (https 설정시 필수)
 - `VITE_API_URL`: API 서버의 URL
