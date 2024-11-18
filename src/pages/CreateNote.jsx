@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function CreateNote() {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {

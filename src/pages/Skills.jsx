@@ -15,7 +15,7 @@ import icon_menu from '../assets/icon/menu-burger.png';
 
 export default function Skills() {
   const navigate = useNavigate();
-  const isMobile = useSelector((state) => state.isMobile);
+  const isMobile = useSelector((state) => state.app.isMobile);
 
   function navMobileHome() {
     event.preventDefault();

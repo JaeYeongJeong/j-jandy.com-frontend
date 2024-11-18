@@ -8,8 +8,8 @@ import searchIcon from '../assets/icon/search.png';
 export default function NoteHeader() {
   const searchElement = useRef();
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  const isMobile = useSelector((state) => state.isMobile);
+  const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
+  const isMobile = useSelector((state) => state.app.isMobile);
 
   function handleSubmit(event) {
     event.preventDefault();

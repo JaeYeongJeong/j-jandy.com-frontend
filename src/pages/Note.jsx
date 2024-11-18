@@ -1,10 +1,12 @@
-import { useParams, useRouteLoaderData } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NoteDetail from '../components/NoteDetail';
+import { useSelector } from 'react-redux';
+import ErrorPage from './ErrorPage';
 
 export default function Note() {
-  const { notes } = useRouteLoaderData('notes');
+  const { notes, error, loading } = useSelector((state) => state.notes);
 
-  if (!notes) {
+  if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -14,6 +16,10 @@ export default function Note() {
 
   if (!note) {
     return <div>Note not found</div>;
+  }
+
+  if (error) {
+    return <ErrorPage error={error} />;
   }
 
   return <NoteDetail note={note} />;

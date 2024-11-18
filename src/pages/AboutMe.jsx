@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AboutMe() {
   const navigate = useNavigate();
-  const isMobile = useSelector((state) => state.isMobile);
+  const isMobile = useSelector((state) => state.app.isMobile);
 
   const toggleNav = () => {
     event.preventDefault();

@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteNote } from '../Util/http';
 import { s3BucketUrl } from '../Util/api-url';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { scrollToTop } from '../Util/scrollToTop';
+import { deleteNoteAction } from '../../redux/actions';
 
 export default function NoteDetail({ note }) {
   const navigate = useNavigate();
   const param = useParams();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
 
   const cardImage = note.image ? `${s3BucketUrl}/${note.image}` : '';
 
@@ -26,6 +28,7 @@ export default function NoteDetail({ note }) {
   async function deleteHandler() {
     if (confirm('정말로 삭제하시겠습니까?')) {
       await deleteNote(param.id);
+      dispatch(deleteNoteAction(param.id));
       return navigate('/notes');
     }
     return;

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAuthenticated } from '../../redux/actions';
 
 export default function NavBar() {
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
   const dispatch = useDispatch();
 
   async function handleLogout(e) {

@@ -5,7 +5,7 @@ import { regist } from '../Util/http';
 
 export default function Regist() {
   const actionData = useActionData();
-  const isMobile = useSelector((state) => state.isMobile);
+  const isMobile = useSelector((state) => state.app.isMobile);
   const navigate = useNavigate();
 
   function navMobileHome() {

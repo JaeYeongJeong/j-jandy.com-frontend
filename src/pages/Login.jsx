@@ -9,7 +9,7 @@ export default function Login() {
   const actionData = useActionData();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isMobile = useSelector((state) => state.isMobile);
+  const isMobile = useSelector((state) => state.app.isMobile);
 
   useEffect(() => {
     if (actionData && actionData.isAuthenticated) {

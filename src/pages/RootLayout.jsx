@@ -7,7 +7,7 @@ import { setAuthenticated, setMobile } from '../../redux/actions';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 export default function RootLayout() {
   const dispatch = useDispatch();
-  const isMobile = useSelector((state) => state.isMobile);
+  const isMobile = useSelector((state) => state.app.isMobile);
 
   useEffect(() => {
     const checkMobile = () => {

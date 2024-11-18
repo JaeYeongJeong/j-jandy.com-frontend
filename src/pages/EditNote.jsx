@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function EditNote() {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -13,7 +13,7 @@ export default function EditNote() {
     }
   }, [isAuthenticated, navigate]);
 
-  const { notes } = useRouteLoaderData('notes');
+  const { notes, error, loading } = useSelector((state) => state.notes);
   const { id } = useParams();
   const note = notes.find((note) => note.id == id);
 
