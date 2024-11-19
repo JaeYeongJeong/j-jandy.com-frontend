@@ -18,11 +18,11 @@ export default function NoteForm({ method, note }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (
-      actionData?.isAuthenticated == true ||
-      actionData?.isAuthenticated == false
-    ) {
-      dispatch(setAuthenticated(actionData.isAuthenticated));
+    if (actionData?.isAuthenticated === false) {
+      dispatch(setAuthenticated(false));
+    }
+    if (actionData?.error) {
+      alert(actionData?.error);
     }
   }, [actionData, dispatch]);
 
@@ -136,6 +136,6 @@ export async function action({ request, params }) {
 
     return redirect('/notes');
   } catch (error) {
-    throw new Error(error.message || 'Something went wrong while form action.');
+    return { error: error.message || 'An unexpected error occurred.' };
   }
 }

@@ -27,9 +27,13 @@ export default function NoteDetail({ note }) {
 
   async function deleteHandler() {
     if (confirm('정말로 삭제하시겠습니까?')) {
-      await deleteNote(param.id);
-      dispatch(deleteNoteAction(param.id));
-      return navigate('/notes');
+      try {
+        await deleteNote(param.id);
+        dispatch(deleteNoteAction(param.id));
+        return navigate('/notes');
+      } catch (error) {
+        alert(error.message);
+      }
     }
     return;
   }

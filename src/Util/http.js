@@ -92,10 +92,9 @@ export async function editNote(noteData, id) {
     });
     if (!response.ok) {
       let errorMessage = 'Could not edit note.';
-      if (response.status === 401 || response.status === 404) {
-        const errorData = await response.json();
-        errorMessage = errorData.message || errorMessage;
-      }
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorMessage;
+
       throw new Error(errorMessage);
     }
     const { editedId } = await response.json();
@@ -114,10 +113,9 @@ export async function deleteNote(id) {
     })
     if (!response.ok) {
       let errorMessage = 'Could not delete note.';
-      if (response.status === 401 || response.status === 404) {
-        const errorData = await response.json();
-        errorMessage = errorData.message || errorMessage;
-      }
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorMessage;
+
       throw new Error(errorMessage);
     }
     const { deleteId } = await response.json();
