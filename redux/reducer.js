@@ -1,8 +1,9 @@
-import { SET_MOBILE, SET_AUTHENTICATED, FETCH_NOTES_REQUEST, FETCH_NOTES_SUCCESS, FETCH_NOTES_FAILURE, DELETE_NOTE } from './actions';
+import { SET_MOBILE, SET_AUTHENTICATED, FETCH_NOTES_REQUEST, FETCH_NOTES_SUCCESS, FETCH_NOTES_FAILURE, DELETE_NOTE, SET_USER } from './actions';
 
 const initialAppState = {
   isMobile: false,
   isAuthenticated: false,
+  user: '',
 };
 
 const initialNotesState = {
@@ -17,6 +18,8 @@ const appReducer = (state = initialAppState, action) => {
       return { ...state, isMobile: action.payload, };
     case SET_AUTHENTICATED:
       return { ...state, isAuthenticated: action.payload, };
+    case SET_USER:
+      return { ...state, user: action.payload, };
     default:
       return state;
   }

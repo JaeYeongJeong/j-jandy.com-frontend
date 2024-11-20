@@ -10,7 +10,7 @@ export default function NoteDetail({ note }) {
   const param = useParams();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.app.isAuthenticated);
-
+  const userId = useSelector((state) => state.app.user);
   const cardImage = note.image ? `${s3BucketUrl}/${note.image}` : '';
 
   const formatedDate = new Date(note.date).toLocaleDateString('ko-KR', {
@@ -37,7 +37,7 @@ export default function NoteDetail({ note }) {
     }
     return;
   }
-
+  console.log(userId);
   return (
     <div className="note-detail">
       <article>
@@ -53,7 +53,7 @@ export default function NoteDetail({ note }) {
         </div>
       </article>
       <div className="note-footer-container">
-        {isAuthenticated && (
+        {isAuthenticated && userId && note?.user && userId.id === note.user && (
           <>
             <button onClick={editHandler}>Edit</button>
             <button onClick={deleteHandler}>Delete</button>

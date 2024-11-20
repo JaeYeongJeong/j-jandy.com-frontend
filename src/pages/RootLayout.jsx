@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar';
 import { checkSession } from '../Util/http';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAuthenticated, setMobile } from '../../redux/actions';
+import { setAuthenticated, setMobile, setUser } from '../../redux/actions';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 export default function RootLayout() {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ export default function RootLayout() {
     const verifySession = async () => {
       const sessionData = await checkSession();
       dispatch(setAuthenticated(sessionData.isAuthenticated));
+      dispatch(setUser(sessionData.user));
     };
     verifySession();
   }, [dispatch]);

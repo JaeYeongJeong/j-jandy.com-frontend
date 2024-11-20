@@ -1,7 +1,7 @@
 import { Form, useActionData, useNavigate } from 'react-router-dom';
 import menuIcon from '../assets/icon/menu-burger.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAuthenticated } from '../../redux/actions';
+import { setAuthenticated, setUser } from '../../redux/actions';
 import { checkSession, login } from '../Util/http';
 import { useEffect } from 'react';
 
@@ -14,6 +14,7 @@ export default function Login() {
   useEffect(() => {
     if (actionData && actionData.isAuthenticated) {
       dispatch(setAuthenticated(actionData.isAuthenticated));
+      dispatch(setUser(actionData.user));
       navigate(-1);
     }
   }, [actionData, dispatch]);
@@ -42,7 +43,7 @@ export default function Login() {
           </div>
           <div className="note-form-chd">
             <label htmlFor="password">Password</label>
-            <input id="password" type="text" name="password" required />
+            <input id="password" type="password" name="password" required />
           </div>
           <div className="note-form-chd">
             <div className="note-footer-container">
@@ -66,7 +67,10 @@ export async function action({ request }) {
   try {
     await login({ id, password });
     const sessionData = await checkSession();
-    return { isAuthenticated: sessionData.isAuthenticated };
+    return {
+      isAuthenticated: sessionData.isAuthenticated,
+      user: sessionData.user,
+    };
   } catch (error) {
     return {
       error: error.message || 'Something went wrong while login action.',

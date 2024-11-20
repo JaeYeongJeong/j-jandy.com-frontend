@@ -2,7 +2,7 @@ import { fetchNotes } from '../src/Util/http';
 
 export const SET_MOBILE = 'SET_MOBILE';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
-
+export const SET_USER = 'SET_USER';
 export const FETCH_NOTES_REQUEST = 'FETCH_NOTES_REQUEST';
 export const FETCH_NOTES_SUCCESS = 'FETCH_NOTES_SUCCESS';
 export const FETCH_NOTES_FAILURE = 'FETCH_NOTES_FAILURE';
@@ -16,6 +16,11 @@ export const setMobile = (isMobile) => ({
 export const setAuthenticated = (isAuthenticated) => ({
   type: SET_AUTHENTICATED,
   payload: isAuthenticated,
+});
+
+export const setUser = (user) => ({
+  type: SET_USER,
+  payload: user,
 });
 
 export const fetchNotesRequest = () => ({
